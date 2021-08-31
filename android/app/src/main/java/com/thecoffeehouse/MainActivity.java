@@ -1,5 +1,5 @@
 package com.thecoffeehouse;
-
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
@@ -12,4 +12,8 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "TheCoffeeHouse";
   }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(null);
+}
 }

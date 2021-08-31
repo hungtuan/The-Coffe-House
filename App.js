@@ -1,112 +1,55 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React from 'react'
+import { View, Text } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import HomeScreen from './src/Screens/HomeScreen';
+import OrderScreen from './src/Screens/OrderScreen';
+import ShopScreen from './src/Screens/ShopScreen';
+import TicketScreen from './src/Screens/TicketScreen';
+import OtherScreen from './src/Screens/OtherScreen';
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+const Tab = createBottomTabNavigator();
+export default function App() {
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            let colorForcused;
+            if (route.name === 'HomeScreen') {
+              iconName = focused ? 'home-outline' : 'home-outline';
+              colorForcused = focused ? '#FCBF84' : '#787878'
+            } else if (route.name === 'OrderScreen') {
+              iconName = focused ? 'cafe-outline' : 'cafe-outline';
+              colorForcused = focused ? '#FCBF84' : '#787878'
+            } else if (route.name === 'ShopScreen') {
+              iconName = focused ? 'cart-outline' : 'cart-outline';
+              colorForcused = focused ? '#FCBF84' : '#787878'
+            } else if (route.name === 'TicketScreen') {
+              iconName = focused ? 'journal-outline' : 'journal-outline';
+              colorForcused = focused ? '#FCBF84' : '#787878'
+            } else if (route.name === 'OtherScreen') {
+              iconName = focused ? 'menu-outline' : 'menu-outline';
+              colorForcused = focused ? '#FCBF84' : '#787878'
+            }
+            return <Ionicons name={iconName} size={25} color={colorForcused} style={{ fontWeight: 900 }} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: { height: 60, justifyContent: 'space-between' },
+          tabBarLabelStyle: { fontSize: 14, marginBottom: 5 },
+          headerShown: false
+        })}
+      >
+        <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ tabBarLabel: 'Trang chủ' }} />
+        <Tab.Screen name="OrderScreen" component={OrderScreen} options={{ tabBarLabel: 'Đặt hàng' }} />
+        <Tab.Screen name="ShopScreen" component={ShopScreen} options={{ tabBarLabel: 'Cửa hàng' }} />
+        <Tab.Screen name="TicketScreen" component={TicketScreen} options={{ tabBarLabel: 'Tích điểm' }} />
+        <Tab.Screen name="OtherScreen" component={OtherScreen} options={{ tabBarLabel: 'Khác' }} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+}
