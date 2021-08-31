@@ -13,7 +13,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const windowHeight = Dimensions.get('window').height;
 export default function OtherScreen() {
     return (
-        <SafeAreaView style={{height: windowHeight - 55}}>
+        <SafeAreaView style={{height: windowHeight - 75}}>
             {/* Header */}
             <View style={{
                 backgroundColor: '#ffffff',
