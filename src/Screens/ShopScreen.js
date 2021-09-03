@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     View,
     Text,
@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { getAllStores } from '../services/Api';
 
 const windowHeight = Dimensions.get('window').height;
 const DATA = [
@@ -63,10 +64,10 @@ const renderItem = ({ item }) => {
     return (
         <View style={styles.itemBody}>
             <TouchableOpacity style={{ flexDirection: 'row', margin: 15, justifyContent: 'space-between' }}>
-                <Image source={{ uri: item.img }} style={styles.itemImg} />
+                <Image source={{ uri: item.image_1 }} style={styles.itemImg} />
                 <View style={styles.itemContent}>
                     <Text style={styles.itemHeading}>THE COFFEE HOUSE</Text>
-                    <Text style={styles.itemText}>{item.loca}</Text>
+                    <Text style={styles.itemText}>{item.address.full_address}</Text>
                     <Text style={styles.itemText}>cách đây {item.distance} km</Text>
                 </View>
             </TouchableOpacity>
@@ -75,6 +76,24 @@ const renderItem = ({ item }) => {
 }
 
 export default function ShopScreen() {
+    const [stores, getStores] = useState([])
+
+    useEffect(() => {
+        
+        const callGetStores = async () => {
+          try {
+            const response = await getAllStores();
+            console.log('rs', response.data); // data tu api tra ve
+            getStores(response.data)
+    
+          } catch (error) {
+            console.error(error);
+          }
+        }
+    
+        callGetStores()
+      }, [])
+
     return (
         <SafeAreaView style={{ height: windowHeight - 55 }}>
             {/* Header */}
@@ -116,7 +135,7 @@ export default function ShopScreen() {
                 <Text style={styles.body_heading}>Các cửa hàng khác</Text>
             </View>
             <FlatList
-                data={DATA}
+                data={stores}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 style={{ height: 1000 }}

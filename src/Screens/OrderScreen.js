@@ -104,10 +104,10 @@ export default function OrderScreen() {
       {/* Header */}
       <TouchableOpacity style={styles.container}>
         <View style={styles.container_header}>
-          {/* <Image
+           <Image
             source={require('../assets/Images/shipper.png')}
             style={styles.imgShipper}
-          /> */}
+          />
           <View style={styles.container_header_content}>
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.headingTitle}>Giao đến</Text>
