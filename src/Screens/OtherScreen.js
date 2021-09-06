@@ -7,7 +7,6 @@ import {
 	SafeAreaView,
 	ScrollView,
 	Dimensions,
-	Modal
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ModalLogin from '../Components/OtherScreens/ModalLogin';
@@ -17,7 +16,7 @@ export default function OtherScreen() {
 	const [isVisible, setIsVisible] = useState(false)
 
 	return (
-		<SafeAreaView style={{ height: windowHeight - 75 }}>
+		<SafeAreaView style={{ height: windowHeight - 50 }}>
 			{/* Header */}
 			<View style={{
 				backgroundColor: '#ffffff',
