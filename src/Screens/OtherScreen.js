@@ -126,7 +126,7 @@ export default function OtherScreen() {
 						</TouchableOpacity>
 						<ModalLogin
 							showModal={isVisible}
-							close={(isVisible) => setIsVisible(isVisible)}
+							close={(val) => setIsVisible(val)}
 							visible={isVisible}
 						/>
 					</View>
