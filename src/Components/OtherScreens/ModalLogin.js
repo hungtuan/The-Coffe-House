@@ -22,16 +22,17 @@ export default function ModalLogin(props) {
       style={styles.modal}>
       <SafeAreaView>
         <View style={styles.content}>
-          <Image
-            source={{ uri: 'https://storage.googleapis.com/golden-age/2476730c-346d-464e-a4c2-002960d0c1bc/0.jpeg', }}
-            style={styles.imgBackground}
-          />
-          <TouchableOpacity
-            onPress={closeModal}
-            style={styles.closeModalForm}>
-            <Ionicons name='close-outline' style={styles.iconClose} />
-          </TouchableOpacity>
-
+          <View style={{width: '100%'}}>
+            <Image
+              source={{ uri: 'https://storage.googleapis.com/golden-age/2476730c-346d-464e-a4c2-002960d0c1bc/0.jpeg', }}
+              style={styles.imgBackground}
+            />
+            <TouchableOpacity
+              onPress={closeModal}
+              style={styles.closeModalForm}>
+              <Ionicons name='close-outline' style={styles.iconClose} />
+            </TouchableOpacity>
+          </View>
           <View style={styles.bodyModal}>
             <View style={{ marginTop: 15, marginBottom: 15, alignItems: 'center' }}>
               <Text style={styles.title}>Chào mừng bạn đến với</Text>
@@ -84,20 +85,20 @@ export default function ModalLogin(props) {
 
 const styles = StyleSheet.create({
   modal: {
-    marginTop: 100,
+    marginTop: 50,
     borderRadius: 15,
     width: w,
+    height: h - 30,
     marginLeft: 0
   },
   content: {
     backgroundColor: 'white',
+    width: w,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 15,
     borderColor: 'rgba(0, 0, 0, 0.1)',
-    height: h
-  },
-  contentTitle: {
-    fontSize: 20,
-    marginBottom: 12,
   },
   imgBackground: {
     width: "100%",
@@ -117,12 +118,11 @@ const styles = StyleSheet.create({
     right: 10,
     backgroundColor: '#BBBBBB',
     borderRadius: 20,
+    padding: 10,
+    zIndex: 1
   },
   iconClose: {
-    padding: 5,
-    color: '#ffffff',
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 15
   },
   title: {
     fontSize: 14,

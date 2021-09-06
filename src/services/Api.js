@@ -11,4 +11,5 @@ const instance = axios.create({
 
 export const getMenu = () => instance.get('v2/menu')
 export const getAllStores = () => instance.get('get_all_store')
+export const login = () => instance.get('verify_mobile')
 export const verifyPhone = () => instance.get('verify_mobile')
