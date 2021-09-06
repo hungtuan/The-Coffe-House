@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, SafeAreaView, TextInput, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Modal from "react-native-modal";
+import ModalVerifyPhone from './ModalVerifyPhone';
 
 const h = Dimensions.get('screen').height
 const w = Dimensions.get('screen').width
@@ -52,9 +53,15 @@ export default function ModalLogin(props) {
                 ></TextInput>
               </View>
             </View>
-            <TouchableOpacity style={styles.loginForm}>
+            <TouchableOpacity
+              onPress={() => setIsVisible(true)}
+              style={styles.loginForm}>
               <Text style={{ color: '#ffffff' }}>Đăng nhập</Text>
             </TouchableOpacity>
+            <ModalVerifyPhone
+              showModalVerifyPhone={isVisible}
+              close={(val) => setIsVisible(val)}
+              visible={isVisible} />
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <View style={styles.line}></View>
               <Text style={styles.or}>HOẶC</Text>
@@ -78,7 +85,9 @@ export default function ModalLogin(props) {
 const styles = StyleSheet.create({
   modal: {
     marginTop: 100,
-    borderRadius: 15
+    borderRadius: 15,
+    width: w,
+    marginLeft: 0
   },
   content: {
     backgroundColor: 'white',
