@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text, SafeAreaView, TextInput, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Modal from "react-native-modal";
 import ModalVerifyPhone from './ModalVerifyPhone';
+import Login from '../../services/Api'
 
 const h = Dimensions.get('screen').height
 const w = Dimensions.get('screen').width
@@ -13,6 +14,16 @@ export default function ModalLogin(props) {
     setIsVisible(false)
     props.close(isVisible)
   }
+  const [isPhone, setPhone] = useState()
+  const onVerifyPhone = async () => {
+    try {
+      const response = await Login({ phone: isPhone });
+      console.log('rs', response.data.data); // data tu api tra ve
+      setIsVisible(true)
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <Modal
       testID={'modal'}
@@ -22,7 +33,7 @@ export default function ModalLogin(props) {
       style={styles.modal}>
       <SafeAreaView>
         <View style={styles.content}>
-          <View style={{width: '100%'}}>
+          <View style={{ width: '100%' }}>
             <Image
               source={{ uri: 'https://storage.googleapis.com/golden-age/2476730c-346d-464e-a4c2-002960d0c1bc/0.jpeg', }}
               style={styles.imgBackground}
@@ -51,11 +62,13 @@ export default function ModalLogin(props) {
                   placeholder='Nhập số điện thoại'
                   keyboardType='number-pad'
                   style={{ width: 280 }}
+                  value={isPhone}
+                  onChangeText={(valueNumber) => setPhone(valueNumber)}
                 ></TextInput>
               </View>
             </View>
             <TouchableOpacity
-              onPress={() => setIsVisible(true)}
+              onPress={onVerifyPhone}
               style={styles.loginForm}>
               <Text style={{ color: '#ffffff' }}>Đăng nhập</Text>
             </TouchableOpacity>
@@ -85,18 +98,16 @@ export default function ModalLogin(props) {
 
 const styles = StyleSheet.create({
   modal: {
-    marginTop: 50,
+    marginTop: 10,
     borderRadius: 15,
     width: w,
-    height: h - 30,
+    height: h,
     marginLeft: 0
   },
   content: {
     backgroundColor: 'white',
     width: w,
     height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 15,
     borderColor: 'rgba(0, 0, 0, 0.1)',
   },
@@ -118,11 +129,12 @@ const styles = StyleSheet.create({
     right: 10,
     backgroundColor: '#BBBBBB',
     borderRadius: 20,
-    padding: 10,
+    padding: 5,
     zIndex: 1
   },
   iconClose: {
-    fontSize: 15
+    fontSize: 20,
+    color: '#ffffff'
   },
   title: {
     fontSize: 14,
@@ -169,12 +181,14 @@ const styles = StyleSheet.create({
     borderRightWidth: 1
   },
   line: {
-    width: 100,
+    width: 150,
     height: 1,
     backgroundColor: '#BBBBBB'
   },
   or: {
-    margin: 15,
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 10,
     fontSize: 15,
     fontWeight: 'bold',
     color: '#BBBBBB'
@@ -197,6 +211,7 @@ const styles = StyleSheet.create({
   },
   continueGoogle: {
     marginTop: 10,
+    marginBottom: 30,
     marginLeft: 15,
     marginRight: 15,
     flexDirection: 'row',
