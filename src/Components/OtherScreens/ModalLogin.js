@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, TextInput, StyleSheet, Dimensions, Image, Tou
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Modal from "react-native-modal";
 import ModalVerifyPhone from './ModalVerifyPhone';
-import Login from '../../services/Api'
+import { Login } from '../../services/Api'
 
 const h = Dimensions.get('screen').height
 const w = Dimensions.get('screen').width
@@ -18,7 +18,7 @@ export default function ModalLogin(props) {
   const onVerifyPhone = async () => {
     try {
       const response = await Login({ phone: isPhone });
-      console.log('rs', response.data.data); // data tu api tra ve
+      console.log('rs', response.data); // data tu api tra ve
       setIsVisible(true)
     } catch (error) {
       console.error(error);
@@ -74,6 +74,7 @@ export default function ModalLogin(props) {
             </TouchableOpacity>
             <ModalVerifyPhone
               showModalVerifyPhone={isVisible}
+              isPhone={isPhone}
               close={(val) => setIsVisible(val)}
               visible={isVisible} />
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>

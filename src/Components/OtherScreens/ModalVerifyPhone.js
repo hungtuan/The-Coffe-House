@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Modal from "react-native-modal";
 import ModalVerifyPhone from './ModalVerifyPhone';
-import { toComputedKey } from '@babel/types';
+import { Login } from '../../services/Api'
 
 const h = Dimensions.get('screen').height
 const w = Dimensions.get('screen').width
@@ -15,7 +15,16 @@ export default function ModalLogin(props) {
 		setIsVisible(false)
 		props.close(isVisible)
 	}
-
+	const onVerifyCode = async () => {
+		try {
+			const response = await Login({ phone: props.isPhone, otp: code });
+			console.log('rs', response.data); // data tu api tra ve
+			setIsVisible(false)
+			//navigation.navigate('HomeScreen')
+		} catch (error) {
+			console.error(error);
+		}
+	}
 	return (
 		<Modal
 			testID={'modal'}
@@ -39,11 +48,14 @@ export default function ModalLogin(props) {
 					<TextInput
 						onChangeText={(val) => setCode(val)}
 						keyboardType={'number-pad'}
+						value={code}
 						style={styles.modalCode}
 					></TextInput>
 				</View>
-				<View style={{alignItems:'center'}}>
-					<TouchableOpacity style={styles.modalLogin}>
+				<View style={{ alignItems: 'center' }}>
+					<TouchableOpacity 
+						onPress={onVerifyCode}
+						style={styles.modalLogin}>
 						<Text style={{ color: '#ffffff', textAlign: 'center' }}>Đăng Nhập</Text>
 					</TouchableOpacity>
 				</View>
