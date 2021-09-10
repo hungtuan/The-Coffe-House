@@ -8,6 +8,7 @@ import {
 	ScrollView,
 	Dimensions,
 } from 'react-native'
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ModalLogin from '../Components/OtherScreens/ModalLogin';
 
@@ -30,11 +31,11 @@ export default function OtherScreen() {
 					<Text style={styles.header_Heading}>Khác</Text>
 					<View style={styles.header_icon}>
 						<TouchableOpacity style={styles.header_Ticket}>
-							<Ionicons name="journal-outline" style={styles.header_iconTicket} />
+							<Material name="ticket-confirmation-outline" style={styles.header_iconTicket} />
 							<Text style={styles.header_numberTicket}>5</Text>
 						</TouchableOpacity>
 						<TouchableOpacity style={styles.header_notification}>
-							<Ionicons name="notifications-outline" style={styles.header_iconNotification} />
+							<Material name="bell-outline" style={styles.header_iconNotification} />
 						</TouchableOpacity>
 					</View>
 				</View>
@@ -51,20 +52,20 @@ export default function OtherScreen() {
 					<Text style={styles.body_titleHeading}>Tiện ích</Text>
 					<TouchableOpacity style={{ backgroundColor: '#ffffff', borderRadius: 10, marginBottom: 5 }}>
 						<View style={{ margin: 20 }}>
-							<Ionicons name="document-text-outline" style={styles.body_icon} />
+							<Material name="history" style={styles.body_icon} />
 							<Text style={styles.body_text}>Lịch sử đơn hàng</Text>
 						</View>
 					</TouchableOpacity>
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 						<TouchableOpacity style={{ backgroundColor: '#ffffff', borderRadius: 10, marginTop: 5, width: '49%' }}>
 							<View style={{ margin: 20 }}>
-								<Ionicons name="musical-note-outline" style={styles.body_iconMusic} />
+								<Material name="music-note-outline" style={styles.body_iconMusic} />
 								<Text style={styles.body_text}>Nhạc đang phát</Text>
 							</View>
 						</TouchableOpacity>
 						<TouchableOpacity style={{ backgroundColor: '#ffffff', borderRadius: 10, marginTop: 5, width: '49%' }}>
 							<View style={{ margin: 20 }}>
-								<Ionicons name="alert-circle-outline" style={styles.body_iconRules} />
+								<Material name="alert-circle-outline" style={styles.body_iconRules} />
 								<Text style={styles.body_text}>Điều khoản</Text>
 							</View>
 						</TouchableOpacity>
@@ -75,17 +76,17 @@ export default function OtherScreen() {
 					<View style={{ backgroundColor: '#ffffff', borderRadius: 10, marginBottom: 5 }}>
 						<TouchableOpacity style={styles.body_itemMain}>
 							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-								<Ionicons name="star-outline" style={styles.body_iconMain} />
+								<Material name="star-outline" style={styles.body_iconMain} />
 								<Text style={styles.body_textMain}>Đánh giá đơn hàng</Text>
 							</View>
-							<Ionicons name="chevron-forward-outline" style={styles.body_iconMain} />
+							<Material name="chevron-right" style={styles.body_iconMain} />
 						</TouchableOpacity>
 						<TouchableOpacity style={{ ...styles.body_itemMain, borderBottomWidth: 0 }}>
 							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 								<Ionicons name="chatbox-outline" style={styles.body_iconMain} />
 								<Text style={styles.body_textMain}>Liên hệ và góp ý</Text>
 							</View>
-							<Ionicons name="chevron-forward-outline" style={styles.body_iconMain} />
+							<Material name="chevron-right" style={styles.body_iconMain} />
 						</TouchableOpacity>
 					</View>
 
@@ -94,24 +95,24 @@ export default function OtherScreen() {
 					<View style={{ backgroundColor: '#ffffff', borderRadius: 10, marginBottom: 5 }}>
 						<TouchableOpacity style={styles.body_itemMain}>
 							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-								<Ionicons name="person-outline" style={styles.body_iconMain} />
+								<Material name="account-settings-outline" style={styles.body_iconMain} />
 								<Text style={styles.body_textMain}>Thông tin cá nhân</Text>
 							</View>
-							<Ionicons name="chevron-forward-outline" style={styles.body_iconMain} />
+							<Material name="chevron-right" style={styles.body_iconMain} />
 						</TouchableOpacity>
 						<TouchableOpacity style={styles.body_itemMain}>
 							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-								<Ionicons name="bookmark-outline" style={styles.body_iconMain} />
+								<Material name="bookmark-outline" style={styles.body_iconMain} />
 								<Text style={styles.body_textMain}>Địa chỉ đã lưu</Text>
 							</View>
-							<Ionicons name="chevron-forward-outline" style={styles.body_iconMain} />
+							<Material name="chevron-right" style={styles.body_iconMain} />
 						</TouchableOpacity>
 						<TouchableOpacity style={styles.body_itemMain}>
 							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-								<Ionicons name="settings-outline" style={styles.body_iconMain} />
+								<Ionicons name="settings" style={styles.body_iconMain} />
 								<Text style={styles.body_textMain}>Cài đặt</Text>
 							</View>
-							<Ionicons name="chevron-forward-outline" style={styles.body_iconMain} />
+							<Material name="chevron-right" style={styles.body_iconMain} />
 						</TouchableOpacity>
 						<TouchableOpacity
 							onPress={() => setIsVisible(true)}
@@ -121,7 +122,7 @@ export default function OtherScreen() {
 								<Ionicons name="chatbox-outline" style={styles.body_iconMain} />
 								<Text style={styles.body_textMain}>Đăng nhập</Text>
 							</View>
-							<Ionicons name="chevron-forward-outline" style={styles.body_iconMain} />
+							<Material name="chevron-right" style={styles.body_iconMain} />
 						</TouchableOpacity>
 						<ModalLogin
 							showModal={isVisible}

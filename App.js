@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './src/Screens/HomeScreen';
 import OrderScreen from './src/Screens/OrderScreen';
 import ShopScreen from './src/Screens/ShopScreen';
@@ -23,19 +23,19 @@ export default function App() {
               iconName = focused ? 'home-outline' : 'home-outline';
               colorForcused = focused ? '#FCBF84' : '#787878'
             } else if (route.name === 'OrderScreen') {
-              iconName = focused ? 'cafe-outline' : 'cafe-outline';
+              iconName = focused ? 'coffee' : 'coffee';
               colorForcused = focused ? '#FCBF84' : '#787878'
             } else if (route.name === 'ShopScreen') {
               iconName = focused ? 'cart-outline' : 'cart-outline';
               colorForcused = focused ? '#FCBF84' : '#787878'
             } else if (route.name === 'TicketScreen') {
-              iconName = focused ? 'journal-outline' : 'journal-outline';
+              iconName = focused ? 'ticket-confirmation-outline' : 'ticket-confirmation-outline';
               colorForcused = focused ? '#FCBF84' : '#787878'
             } else if (route.name === 'OtherScreen') {
-              iconName = focused ? 'menu-outline' : 'menu-outline';
+              iconName = focused ? 'menu' : 'menu';
               colorForcused = focused ? '#FCBF84' : '#787878'
             }
-            return <Ionicons name={iconName} size={25} color={colorForcused} style={{ fontWeight: 900 }} />;
+            return <Material name={iconName} size={25} color={colorForcused} style={{ fontWeight: 900 }} />;
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',

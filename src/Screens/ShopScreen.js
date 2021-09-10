@@ -6,60 +6,15 @@ import {
     Image, StyleSheet,
     SafeAreaView,
     FlatList,
-    crollView,
     TextInput,
     Dimensions
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons';
+
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getAllStores } from '../services/Api';
 
 const windowHeight = Dimensions.get('window').height;
-const DATA = [
-    {
-        id: 1,
-        loca: '86 Cao Thắng, Quận 3, Hồ chí Minh, Việt Nam',
-        distance: '0.07',
-        img: 'https://file.hstatic.net/1000075078/file/store_lhp_vt_master.jpg'
-    },
-    {
-        id: 2,
-        loca: '86 Cao Thắng, Quận 3, Hồ chí Minh, Việt Nam',
-        distance: '0.07',
-        img: 'https://file.hstatic.net/1000075078/file/store_lhp_vt_master.jpg'
-    },
-    {
-        id: 3,
-        loca: '86 Cao Thắng, Quận 3, Hồ chí Minh, Việt Nam',
-        distance: '0.07',
-        img: 'https://file.hstatic.net/1000075078/file/store_lhp_vt_master.jpg'
-    },
-    {
-        id: 4,
-        loca: '86 Cao Thắng, Quận 3, Hồ chí Minh, Việt Nam',
-        distance: '0.07',
-        img: 'https://file.hstatic.net/1000075078/file/store_lhp_vt_master.jpg'
-    },
-    {
-        id: 5,
-        loca: '86 Cao Thắng, Quận 3, Hồ chí Minh, Việt Nam',
-        distance: '0.07',
-        img: 'https://file.hstatic.net/1000075078/file/store_lhp_vt_master.jpg'
-    },
-    {
-        id: 6,
-        loca: '86 Cao Thắng, Quận 3, Hồ chí Minh, Việt Nam',
-        distance: '0.07',
-        img: 'https://file.hstatic.net/1000075078/file/store_lhp_vt_master.jpg'
-    },
-    {
-        id: 7,
-        loca: '86 Cao Thắng, Quận 3, Hồ chí Minh, Việt Nam',
-        distance: '0.07',
-        img: 'https://file.hstatic.net/1000075078/file/store_lhp_vt_master.jpg'
-    }
-]
-
 const renderItem = ({ item }) => {
     return (
         <View style={styles.itemBody}>
@@ -79,20 +34,19 @@ export default function ShopScreen() {
     const [stores, getStores] = useState([])
 
     useEffect(() => {
-        
         const callGetStores = async () => {
-          try {
-            const response = await getAllStores();
-            console.log('rs', response.data); // data tu api tra ve
-            getStores(response.data)
-    
-          } catch (error) {
-            console.error(error);
-          }
+            try {
+                const response = await getAllStores();
+                console.log('rs', response.data); // data tu api tra ve
+                getStores(response.data)
+
+            } catch (error) {
+                console.error(error);
+            }
         }
-    
+
         callGetStores()
-      }, [])
+    }, [])
 
     return (
         <SafeAreaView style={{ height: windowHeight - 55 }}>
@@ -109,11 +63,11 @@ export default function ShopScreen() {
                     <Text style={styles.header_Heading}>Khác</Text>
                     <View style={styles.header_icon}>
                         <TouchableOpacity style={styles.header_Ticket}>
-                            <Ionicons name="journal-outline" style={styles.header_iconTicket} />
+                            <Material name="ticket-confirmation-outline" style={styles.header_iconTicket} />
                             <Text style={styles.header_numberTicket}>5</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.header_notification}>
-                            <Ionicons name="notifications-outline" style={styles.header_iconNotification} />
+                            <Material name="bell-outline" style={styles.header_iconNotification} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -123,7 +77,7 @@ export default function ShopScreen() {
                         <TextInput placeholder='Nhập tên đường' />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.header_mapProperty}>
-                        <Ionicons name="map-outline" style={styles.header_mapIcon} />
+                        <Material name="map-search" style={styles.header_mapIcon} />
                         <Text style={{ fontWeight: 'bold' }}>Bản đồ</Text>
                     </TouchableOpacity>
                 </View>

@@ -9,52 +9,12 @@ import {
   FlatList,
   Dimensions
 } from 'react-native'
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getMenu } from '../services/Api';
 
 
 const windowHeight = Dimensions.get('window').height;
-
-const DATA = [
-  {
-    id: 1,
-    titleHeading: 'Thùng 24 Lon cà Phê Sữa Đá',
-    title: 'Ưu đãi 10% cho đơn hàng mua Cà phê gói - Cà phê uống liền...',
-    img: 'https://product.hstatic.net/1000075078/product/lon-park24_10572efcaba3475d84d6fb0a859a56f0_large.jpg',
-    price: '336.000'
-  },
-  {
-    id: 2,
-    titleHeading: 'Combo 6 Lon cà Phê Sữa Đá',
-    title: 'Ưu đãi 10% cho đơn hàng mua Cà phê gói - Cà phê uống liền...',
-    img: 'https://product.hstatic.net/1000075078/product/lon-park6_9fb70fb05cc44ddabf13ff115bab1ce6_large.jpg',
-    price: '84.000'
-
-  },
-  {
-    id: 3,
-    titleHeading: 'Cà Phê Sữa Đá Hòa Tan',
-    title: 'Ưu đãi 10% cho đơn hàng mua Cà phê gói - Cà phê uống liền...',
-    img: 'https://product.hstatic.net/1000075078/product/caphesuada_ba1ebc3227b34e97b5bb1e711cb3676f_large.jpg',
-    price: '44.000'
-  },
-  {
-    id: 4,
-    titleHeading: 'Cà Phê Peak Flavor - Hương...',
-    title: 'Ưu đãi 10% cho đơn hàng mua Cà phê gói - Cà phê uống liền...',
-    img: 'https://product.hstatic.net/1000075078/product/peak_196fc2433ab14ef297113696e4d6c179_large.jpg',
-    price: '90.000'
-  },
-  {
-    id: 5,
-    titleHeading: 'Cà Phê Rich Finish - Gu Đậm...',
-    title: 'Ưu đãi 10% cho đơn hàng mua Cà phê gói - Cà phê uống liền...',
-    img: 'https://product.hstatic.net/1000075078/product/rich_327845e1f8374e21955320e3ea8e7263_large.jpg',
-    price: '90.000'
-  },
-]
-
-
 
 const renderItem = ({ item }) => {
   return (
@@ -111,7 +71,7 @@ export default function OrderScreen() {
           <View style={styles.container_header_content}>
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.headingTitle}>Giao đến</Text>
-              <Ionicons name="chevron-down-outline" style={styles.headerIcon} />
+              <Material name="chevron-down" style={styles.headerIcon} />
             </View>
             <Text style={{ color: '#7E7E7E' }}>Các sản phẩm sẽ được giao đến địa chỉ của bạn</Text>
           </View>
@@ -123,14 +83,14 @@ export default function OrderScreen() {
         <View style={styles.content_main}>
           <TouchableOpacity style={styles.content_picked}>
             <Text>Cà phê gói - Cà phê uống liền</Text>
-            <Ionicons name="chevron-down-outline" size={14} />
+            <Material name="chevron-down" size={18} />
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.content_searchIcon}>
           <Ionicons name="search-outline" size={14} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.content_heartIcon}>
-          <Ionicons name="heart-outline" size={14} />
+          <Material name="heart-outline" size={14} />
         </TouchableOpacity>
       </View>
 
@@ -169,9 +129,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   headerIcon: {
-    paddingTop: 3,
     marginLeft: 5,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 18
   },
   content: {
     paddingTop: 20,

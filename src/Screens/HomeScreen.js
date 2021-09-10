@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     View,
     Text,
@@ -7,72 +7,117 @@ import {
     StyleSheet,
     SafeAreaView,
     FlatList,
-    Dimensions
+    Dimensions,
+    ScrollView
 } from 'react-native'
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DATA1, DATA2, DATA3 } from '../Components/HomeScreens/DATA';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 
-export default function HomeScreen() {
+const renderItem = ({ item }) => {
+    return (
+        <View style={{ marginBottom: 10, marginRight: 15 }}>
+            <View>
+                <Image source={{ uri: item.img }} style={styles.imgItem} />
+                <Text style={styles.textItem}>{item.title}</Text>
+                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <Material name='calendar-outline' style={{ fontSize: 16, marginRight: 10 }} />
+                    <Text>{item.skedule}</Text>
+                </View>
+            </View>
+        </View>
+    )
+}
+
+export default function HomeScreen({navigation}) {
+    const [selected, isSelected] = useState(0)
+    const [data, setData] = useState(DATA1)
+    let selec = () => {
+        if (selected == 1)
+            return
+    }
     return (
         <SafeAreaView style={{ height: windowHeight - 55, backgroundColor: '#FEF7E5' }}>
-            {/* Header */}
-            <View style={styles.header}>
-                <View style={styles.header_Greating}>
-                    <Ionicons name='cloudy' style={styles.iconCloudy} />
-                    <Text style={styles.header_Heading}>Chào bạn mới</Text>
-                </View>
-                <View style={styles.header_icon}>
-                    <TouchableOpacity style={styles.header_Ticket}>
-                        <Ionicons name="journal-outline" style={styles.header_iconTicket} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.header_notification}>
-                        <Ionicons name="notifications-outline" style={styles.header_iconNotification} />
-                    </TouchableOpacity>
-                </View>
-            </View>
-
-            {/* Header  */}
-            <View style={{ width: windowWidth - 30, margin: 15 }}>
-                <Image
-                    source={require('../assets/Images/backgroundCoffee.jpg')}
-                    style={{ height: 280, width: '100%', borderRadius: 10 }}
-                />
-                <View style={styles.container}>
-                    <Text style={styles.container_Heading}>Đăng nhập</Text>
-                    <Text style={styles.container_Title}>Sử dụng app để tích điểm và đổi những ưu đãi chỉ dành riêng cho thành viên bạn nhé !</Text>
-                    <TouchableOpacity style={styles.container_signIn}>
-                        <Text style={styles.container_signInButton}>Đăng nhập</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.container_rewardForm}>
-                        <View style={styles.container_reward}>
-                            <Text>The Coffee House's Reward</Text>
-                            <Ionicons name='chevron-forward-outline' />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-
-                {/* Body Delivery */}
-                <View style={styles.body_deliveryForm}>
-                    <View style={styles.body_delivery}>
-                        <Image
-                            source={require('../assets/Images/shipper.png')}
-                            style={styles.body_deliveryIcon}
-                        />
-                        <Text>Giao hàng</Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {/* Header */}
+                <View style={styles.header}>
+                    <View style={styles.header_Greating}>
+                        <Material name='cloud-outline' style={styles.iconCloudy} />
+                        <Text style={styles.header_Heading}>Chào bạn mới</Text>
                     </View>
-                    <View style={{ width: 1, backgroundColor: '#E4E4E4', height: 70 }}></View>
-                    <View style={styles.body_delivery}>
-                        <Ionicons name='cafe' style={styles.body_carriedAway} />
-                        <Text>Mang đi</Text>
+                    <View style={styles.header_icon}>
+                        <TouchableOpacity style={styles.header_Ticket}>
+                            <Material name="ticket-confirmation-outline" style={styles.header_iconTicket} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.header_notification}>
+                            <Material name="bell-outline" style={styles.header_iconNotification} />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
-                {/* Body More */}
-                <Text style={styles.body_textHeading}>Khám phá thêm</Text>
-            </View>
+                {/* Header  */}
+                <View style={{ width: windowWidth - 30, margin: 15 }}>
+                    <Image
+                        source={require('../assets/Images/backgroundCoffee.jpg')}
+                        style={{ height: 280, width: '100%', borderRadius: 10 }}
+                    />
+                    <View style={styles.container}>
+                        <Text style={styles.container_Heading}>Đăng nhập</Text>
+                        <Text style={styles.container_Title}>Sử dụng app để tích điểm và đổi những ưu đãi chỉ dành riêng cho thành viên bạn nhé !</Text>
+                        <TouchableOpacity style={styles.container_signIn}>
+                            <Text style={styles.container_signInButton}>Đăng nhập</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.container_rewardForm}>
+                            <View style={styles.container_reward}>
+                                <Text>The Coffee House's Reward</Text>
+                                <Material name='chevron-right' style={{fontSize: 18}}/>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Body Delivery */}
+                    <View style={styles.body_deliveryForm}>
+                        <TouchableOpacity 
+                        onPress={() => navigation.navigate('OrderScreen')}
+                        style={styles.body_delivery}>
+                            <Image
+                                source={require('../assets/Images/shipper.png')}
+                                style={styles.body_deliveryIcon}
+                            />
+                            <Text>Giao hàng</Text>
+                        </TouchableOpacity>
+                        <View style={{ width: 1, backgroundColor: '#E4E4E4', height: 70 }}></View>
+                        <TouchableOpacity style={styles.body_delivery}>
+                            <Material name='coffee' style={styles.body_carriedAway} />
+                            <Text>Mang đi</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Body More */}
+                    <Text style={styles.body_textHeading}>Khám phá thêm</Text>
+                    <View style={styles.showMore}>
+                        <TouchableOpacity onPress={() => setData(DATA1)}>
+                            <Text style={{ fontWeight: 'bold', padding: 10 }}>Ưu đãi đặc biệt</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => setData(DATA2)}>
+                            <Text style={{ fontWeight: 'bold', padding: 10 }}>Cập nhật từ nhà</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => setData(DATA3)}>
+                            <Text style={{ fontWeight: 'bold', padding: 10 }}>#CoffeeLover</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <FlatList
+                        data={data}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                        style={{}}
+                        showsVerticalScrollIndicator={false}
+                        numColumns={2}
+                    />
+                </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -235,5 +280,22 @@ const styles = StyleSheet.create({
     body_textHeading: {
         fontSize: 20,
         fontWeight: 'bold',
+    },
+    showMore: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginBottom: 10
+    },
+    imgItem: {
+        width: windowWidth / 2 - 25,
+        height: windowWidth / 2 - 25,
+        borderRadius: 10
+    },
+    textItem: {
+        width: windowWidth / 2 - 25,
+        fontWeight: 'bold',
+        marginTop: 5,
+        marginBottom: 5
     }
 })

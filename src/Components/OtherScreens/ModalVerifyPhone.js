@@ -20,7 +20,7 @@ export default function ModalLogin(props) {
 			const response = await Login({ phone: props.isPhone, otp: code });
 			console.log('rs', response.data); // data tu api tra ve
 			setIsVisible(false)
-			//navigation.navigate('HomeScreen')
+			navigation.navigate('HomeScreen')
 		} catch (error) {
 			console.error(error);
 		}
