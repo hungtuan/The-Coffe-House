@@ -12,34 +12,14 @@ import {
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getMenu } from '../services/Api';
-
-
+import DetailScreen from '../Components/OrderScreen/DetailScreens'
+import { useSelector, useDispatch } from "react-redux";
 const windowHeight = Dimensions.get('window').height;
 
-const renderItem = ({ item }) => {
-  return (
-    <View style={styles.item}>
-      <TouchableOpacity style={{ flexDirection: 'row', margin: 15, justifyContent: 'space-between' }}>
-        <View style={styles.itemContent}>
-          <Text style={styles.itemHeading}>{item.product_name}</Text>
-          <Text
-            style={styles.itemText1}
-            ellipsizeMode='tail' numberOfLines={2}
-          >{item.description}</Text>
-          <Text style={styles.itemText2}>{item.price}đ</Text>
-        </View>
-        <Image
-          source={{ uri: item.image }}
-          style={styles.itemImg}
-        />
-      </TouchableOpacity>
-    </View>
-  )
-}
-
 export default function OrderScreen() {
+  const dispatch = useDispatch();
   const [product, setProduct] = useState([])
-
+  const [isVisible, setIsVisible] = useState(false)
   useEffect(() => {
     // dispatch(getProduct({ page: 1, limit: 10 }));
     // getMenu()
@@ -53,11 +33,38 @@ export default function OrderScreen() {
         console.error(error);
       }
     }
-
     callGetMenu()
   }, [])
 
-
+  const onAddToCart = (item) => () => {
+		dispatch({ type: 'ADD_CART', data: { ...item, quantity: 1 } })
+		// navigation.navigate('Bag')
+	}
+  const onMoveToDetail = (data) => () => {
+		// navigation.navigate('Detail', { detail: data });
+	}
+  const renderItem = ({ item }) => { 
+    return (
+      <View style={styles.item}>
+        <TouchableOpacity 
+        onPress={onAddToCart(item)}
+        style={{ flexDirection: 'row', margin: 15, justifyContent: 'space-between' }}>
+          <View style={styles.itemContent}>
+            <Text style={styles.itemHeading}>{item.product_name}</Text>
+            <Text
+              style={styles.itemText1}
+              ellipsizeMode='tail' numberOfLines={2}
+            >{item.description}</Text>
+            <Text style={styles.itemText2}>{item.price}đ</Text>
+          </View>
+          <Image
+            source={{ uri: item.image }}
+            style={styles.itemImg}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
 
   return (
     <SafeAreaView style={{ height: windowHeight - 55 }}>

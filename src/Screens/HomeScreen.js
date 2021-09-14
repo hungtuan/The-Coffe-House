@@ -48,7 +48,9 @@ export default function HomeScreen({navigation}) {
                         <Text style={styles.header_Heading}>Chào bạn mới</Text>
                     </View>
                     <View style={styles.header_icon}>
-                        <TouchableOpacity style={styles.header_Ticket}>
+                        <TouchableOpacity 
+                        onPress={() => navigation.navigate('TicketScreen')}
+                        style={styles.header_Ticket}>
                             <Material name="ticket-confirmation-outline" style={styles.header_iconTicket} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.header_notification}>
