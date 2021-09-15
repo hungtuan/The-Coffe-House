@@ -19,10 +19,8 @@ const windowHeight = Dimensions.get('window').height;
 export default function OrderScreen() {
   const dispatch = useDispatch();
   const [product, setProduct] = useState([])
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisibleDetail, setIsVisibleDetail] = useState(false)
   useEffect(() => {
-    // dispatch(getProduct({ page: 1, limit: 10 }));
-    // getMenu()
     const callGetMenu = async () => {
       try {
         const response = await getMenu();
@@ -36,20 +34,19 @@ export default function OrderScreen() {
     callGetMenu()
   }, [])
 
-  const onAddToCart = (item) => () => {
-		dispatch({ type: 'ADD_CART', data: { ...item, quantity: 1 } })
-		// navigation.navigate('Bag')
-	}
-  const onMoveToDetail = (data) => () => {
-		// navigation.navigate('Detail', { detail: data });
-	}
-  const renderItem = ({ item }) => { 
+  const onAddToDetail = (item) => () => {
+    dispatch({ type: 'ADD_DETAIL', data: { ...item, quantity: 1 } })
+    setIsVisibleDetail(true)
+  }
+
+  const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
-        <TouchableOpacity 
-        onPress={onAddToCart(item)}
-        style={{ flexDirection: 'row', margin: 15, justifyContent: 'space-between' }}>
-          <View style={styles.itemContent}>
+        <TouchableOpacity
+          onPress={onAddToDetail(item)}
+          style={{ flexDirection: 'row', margin: 15, justifyContent: 'space-between' }}>
+          <View 
+          style={styles.itemContent}>
             <Text style={styles.itemHeading}>{item.product_name}</Text>
             <Text
               style={styles.itemText1}
@@ -71,7 +68,7 @@ export default function OrderScreen() {
       {/* Header */}
       <TouchableOpacity style={styles.container}>
         <View style={styles.container_header}>
-           <Image
+          <Image
             source={require('../assets/Images/shipper.png')}
             style={styles.imgShipper}
           />
@@ -100,9 +97,7 @@ export default function OrderScreen() {
           <Material name="heart-outline" size={14} />
         </TouchableOpacity>
       </View>
-
       {/* Body */}
-
       <Text style={styles.bodyHeading}>Cà Phê Gói - Cà Phê Uống liền</Text>
       <FlatList
         data={product}
@@ -111,7 +106,9 @@ export default function OrderScreen() {
         style={{}}
         showsVerticalScrollIndicator={false}
       />
-
+      <DetailScreen showDetail={isVisibleDetail}
+        close={(val) => setIsVisibleDetail(val)}
+      />
     </SafeAreaView>
   )
 }
