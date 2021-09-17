@@ -26,7 +26,6 @@ export default function OrderScreen() {
         const response = await getMenu();
         console.log('rs', response.data.data); // data tu api tra ve
         setProduct(response.data.data)
-
       } catch (error) {
         console.error(error);
       }
