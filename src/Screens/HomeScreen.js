@@ -14,30 +14,11 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DATA1, DATA2, DATA3 } from '../Components/HomeScreens/DATA';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
+const w = Dimensions.get('screen').width
 
-
-const renderItem = ({ item }) => {
-    return (
-        <View style={{ marginBottom: 10, marginRight: 15 }}>
-            <View>
-                <Image source={{ uri: item.img }} style={styles.imgItem} />
-                <Text style={styles.textItem}>{item.title}</Text>
-                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Material name='calendar-outline' style={{ fontSize: 16, marginRight: 10 }} />
-                    <Text>{item.skedule}</Text>
-                </View>
-            </View>
-        </View>
-    )
-}
-
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({ navigation }) {
     const [selected, isSelected] = useState(0)
     const [data, setData] = useState(DATA1)
-    let selec = () => {
-        if (selected == 1)
-            return
-    }
     return (
         <SafeAreaView style={{ height: windowHeight - 55, backgroundColor: '#FEF7E5' }}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -48,9 +29,9 @@ export default function HomeScreen({navigation}) {
                         <Text style={styles.header_Heading}>Chào bạn mới</Text>
                     </View>
                     <View style={styles.header_icon}>
-                        <TouchableOpacity 
-                        onPress={() => navigation.navigate('TicketScreen')}
-                        style={styles.header_Ticket}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('TicketScreen')}
+                            style={styles.header_Ticket}>
                             <Material name="ticket-confirmation-outline" style={styles.header_iconTicket} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.header_notification}>
@@ -74,16 +55,16 @@ export default function HomeScreen({navigation}) {
                         <TouchableOpacity style={styles.container_rewardForm}>
                             <View style={styles.container_reward}>
                                 <Text>The Coffee House's Reward</Text>
-                                <Material name='chevron-right' style={{fontSize: 18}}/>
+                                <Material name='chevron-right' style={{ fontSize: 18 }} />
                             </View>
                         </TouchableOpacity>
                     </View>
 
                     {/* Body Delivery */}
                     <View style={styles.body_deliveryForm}>
-                        <TouchableOpacity 
-                        onPress={() => navigation.navigate('OrderScreen')}
-                        style={styles.body_delivery}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('OrderScreen')}
+                            style={styles.body_delivery}>
                             <Image
                                 source={require('../assets/Images/shipper.png')}
                                 style={styles.body_deliveryIcon}
@@ -110,14 +91,25 @@ export default function HomeScreen({navigation}) {
                             <Text style={{ fontWeight: 'bold', padding: 10 }}>#CoffeeLover</Text>
                         </TouchableOpacity>
                     </View>
-                    <FlatList
-                        data={data}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id}
-                        style={{}}
-                        showsVerticalScrollIndicator={false}
-                        numColumns={2}
-                    />
+
+                    <View style={styles.listIteamType}>
+                        {data.map((item) => {
+                            return (
+                                <View
+                                    key={item.id}
+                                    style={{ marginBottom: 12 }}>
+                                    <View>
+                                        <Image source={{ uri: item.img }} style={styles.imgItem} />
+                                        <Text style={styles.textItem}>{item.title}</Text>
+                                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                            <Material name='calendar-outline' style={{ fontSize: 16, marginRight: 10 }} />
+                                            <Text>{item.skedule}</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            )
+                        })}
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -289,13 +281,21 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10
     },
+    listIteamType: {
+        flexDirection: "row",
+        flex: 1,
+        flexWrap: "wrap",
+        width: '100%',
+        justifyContent: 'space-between'
+    },
+
     imgItem: {
-        width: windowWidth / 2 - 25,
-        height: windowWidth / 2 - 25,
+        width: windowWidth / 2 - 30,
+        height: windowWidth / 2 - 30,
         borderRadius: 10
     },
     textItem: {
-        width: windowWidth / 2 - 25,
+        width: 180,
         fontWeight: 'bold',
         marginTop: 5,
         marginBottom: 5

@@ -101,8 +101,7 @@ export default function OrderScreen() {
       <FlatList
         data={product}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
-        style={{}}
+        keyExtractor={item => item._id}
         showsVerticalScrollIndicator={false}
       />
       <DetailScreen showDetail={isVisibleDetail}
