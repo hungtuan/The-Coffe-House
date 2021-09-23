@@ -35,7 +35,7 @@ export default function ModalLogin(props) {
         <View style={styles.content}>
           <View style={{ width: '100%' }}>
             <Image
-              source={{ uri: 'https://storage.googleapis.com/golden-age/2476730c-346d-464e-a4c2-002960d0c1bc/0.jpeg', }}
+              source={require('./imgLogin.jpg')}
               style={styles.imgBackground}
             />
             <TouchableOpacity

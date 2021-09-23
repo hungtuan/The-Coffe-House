@@ -290,8 +290,8 @@ const styles = StyleSheet.create({
     },
 
     imgItem: {
-        width: windowWidth / 2 - 30,
-        height: windowWidth / 2 - 30,
+        width: windowWidth / 2 - 25,
+        height: windowWidth / 2 - 25,
         borderRadius: 10
     },
     textItem: {
