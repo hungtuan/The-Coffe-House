@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, ScrollView, Dimensions, Touchable, TouchableOpacity } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { View, Text, Image, StyleSheet, ScrollView, Dimensions, Touchable, TouchableOpacity, Animated } from 'react-native'
 import Modal from 'react-native-modal';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector, useDispatch } from "react-redux";
@@ -7,26 +7,30 @@ import { useSelector, useDispatch } from "react-redux";
 const w = Dimensions.get('screen').width
 const h = Dimensions.get('screen').height
 export default function DetailScreens(props) {
+    dispatch = useDispatch()
     const [isVisible, setIsVisible] = useState()
-    const [selected, isSelected] = useState('')
     const closeDetail = () => {
         setIsVisible(false)
         props.close(isVisible)
     }
 
     const detailItem = useSelector((store) => store.DetailProduct.product)
+    const onChangeQuantity = (type, item) => () => {
+        dispatch({ type: 'CHANGE-QUANTITY', data: item, changeQuantityType: type })
+    }
     const totalPrice = detailItem[0]?.price * detailItem[0]?.quantity
     return (
         <Modal
             testID={'modal'}
             isVisible={props.showDetail}
-            // onSwipeComplete={this.close}
+            onSwipeComplete={closeDetail}
             swipeDirection={['down']}
+            scrollOffsetMax={400 - 300}
             propagateSwipe={true}
             style={styles.modal}>
             <View style={styles.scrollableModal}>
-                <ScrollView style={{ height: h - 100 }}>
-                    <View >
+                <ScrollView>
+                    <View>
                         <Image source={{ uri: detailItem[0]?.image }} style={styles.banner} />
                         <TouchableOpacity
                             onPress={closeDetail}
@@ -55,11 +59,15 @@ export default function DetailScreens(props) {
                 </ScrollView>
                 <View style={styles.bottomBar}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <TouchableOpacity style={styles.changeQuantityButton}>
+                        <TouchableOpacity
+                            onPress={onChangeQuantity('reduce', detailItem)}
+                            style={styles.changeQuantityButton}>
                             <Material name='minus' size={18} style={{ fontWeight: 'bold' }} />
                         </TouchableOpacity>
                         <Text>{detailItem[0]?.quantity}</Text>
-                        <TouchableOpacity style={styles.changeQuantityButton}>
+                        <TouchableOpacity
+                            onPress={onChangeQuantity('increase', detailItem)}
+                            style={styles.changeQuantityButton}>
                             <Material name='plus' size={18} style={{ fontWeight: 'bold' }} />
                         </TouchableOpacity>
                     </View>
@@ -82,7 +90,7 @@ const styles = StyleSheet.create({
     },
     scrollableModal: {
         backgroundColor: 'white',
-        height: 750,
+        height: h - 80,
         borderRadius: 15,
         borderColor: 'rgba(0, 0, 0, 0.1)',
         width: w

@@ -18,6 +18,7 @@ const w = Dimensions.get('screen').width
 
 export default function HomeScreen({ navigation }) {
     const [selected, isSelected] = useState(0)
+    
     const [data, setData] = useState(DATA1)
     return (
         <SafeAreaView style={{ height: windowHeight - 55, backgroundColor: '#FEF7E5' }}>
