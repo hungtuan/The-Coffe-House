@@ -92,7 +92,6 @@ export default function ShopScreen() {
                 data={stores}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
-                style={{ height: 1000 }}
                 showsVerticalScrollIndicator={false} />
 
         </SafeAreaView>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Modal from "react-native-modal";
-import ModalVerifyPhone from './ModalVerifyPhone';
+import { useNavigation } from '@react-navigation/core';
 import { Login } from '../../services/Api'
 
 const h = Dimensions.get('screen').height
@@ -11,6 +11,7 @@ const w = Dimensions.get('screen').width
 export default function ModalLogin(props) {
 	const [isVisible, setIsVisible] = useState()
 	const [code, setCode] = useState()
+	const navigation = useNavigation()
 	const closeModal = () => {
 		setIsVisible(false)
 		props.close(isVisible)

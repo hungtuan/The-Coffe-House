@@ -60,13 +60,13 @@ export default function DetailScreens(props) {
                 <View style={styles.bottomBar}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <TouchableOpacity
-                            onPress={onChangeQuantity('reduce', detailItem)}
+                            onPress={onChangeQuantity('reduce', detailItem[0])}
                             style={styles.changeQuantityButton}>
                             <Material name='minus' size={18} style={{ fontWeight: 'bold' }} />
                         </TouchableOpacity>
                         <Text>{detailItem[0]?.quantity}</Text>
                         <TouchableOpacity
-                            onPress={onChangeQuantity('increase', detailItem)}
+                            onPress={onChangeQuantity('increase', detailItem[0])}
                             style={styles.changeQuantityButton}>
                             <Material name='plus' size={18} style={{ fontWeight: 'bold' }} />
                         </TouchableOpacity>
