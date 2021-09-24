@@ -18,6 +18,9 @@ export default function DetailScreens(props) {
     const onChangeQuantity = (type, item) => () => {
         dispatch({ type: 'CHANGE-QUANTITY', data: item, changeQuantityType: type })
     }
+    const onAddCart = (item) => () => {
+        dispatch({type: 'ADD_CART', data: item})
+    }
     const totalPrice = detailItem[0]?.price * detailItem[0]?.quantity
     return (
         <Modal
@@ -71,7 +74,9 @@ export default function DetailScreens(props) {
                             <Material name='plus' size={18} style={{ fontWeight: 'bold' }} />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.addCartButton}>
+                    <TouchableOpacity 
+                    onPress= {onAddCart(detailItem[0])}
+                    style={styles.addCartButton}>
                         <Text style={styles.textAddCart}>Chọn sản phẩm - {totalPrice}đ</Text>
                     </TouchableOpacity>
                 </View>

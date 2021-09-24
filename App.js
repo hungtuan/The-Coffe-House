@@ -6,7 +6,7 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './src/Screens/HomeScreen';
 import OrderScreen from './src/Screens/OrderScreen';
 import ShopScreen from './src/Screens/ShopScreen';
-import TicketScreen from './src/Screens/TicketScreen';
+import CartShopping from './src/Screens/CartShopping';
 import OtherScreen from './src/Screens/OtherScreen';
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -30,10 +30,10 @@ export default function App() {
                 iconName = focused ? 'coffee' : 'coffee';
                 colorForcused = focused ? '#FCBF84' : '#787878'
               } else if (route.name === 'ShopScreen') {
-                iconName = focused ? 'cart-outline' : 'cart-outline';
+                iconName = focused ? 'storefront-outline' : 'storefront-outline';
                 colorForcused = focused ? '#FCBF84' : '#787878'
-              } else if (route.name === 'TicketScreen') {
-                iconName = focused ? 'ticket-confirmation-outline' : 'ticket-confirmation-outline';
+              } else if (route.name === 'CartShopping') {
+                iconName = focused ? 'cart-outline' : 'cart-outline';
                 colorForcused = focused ? '#FCBF84' : '#787878'
               } else if (route.name === 'OtherScreen') {
                 iconName = focused ? 'menu' : 'menu';
@@ -51,7 +51,7 @@ export default function App() {
           <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ tabBarLabel: 'Trang chủ' }} />
           <Tab.Screen name="OrderScreen" component={OrderScreen} options={{ tabBarLabel: 'Đặt hàng' }} />
           <Tab.Screen name="ShopScreen" component={ShopScreen} options={{ tabBarLabel: 'Cửa hàng' }} />
-          <Tab.Screen name="TicketScreen" component={TicketScreen} options={{ tabBarLabel: 'Tích điểm' }} />
+          <Tab.Screen name="CartShopping" component={CartShopping} options={{ tabBarLabel: 'Giỏ hàng' }} />
           <Tab.Screen name="OtherScreen" component={OtherScreen} options={{ tabBarLabel: 'Khác' }} />
         </Tab.Navigator>
       </NavigationContainer>
