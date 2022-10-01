@@ -169,7 +169,7 @@ export default function OtherScreen() {
               style={{...styles.body_itemMain, borderBottomWidth: 0}}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Ionicons name="chatbox-outline" style={styles.body_iconMain} />
-                <Text style={styles.body_textMain}>Đăng nhập</Text>
+                <Text style={styles.body_textMain}>Đăng nhập ngay</Text>
               </View>
               <Material name="chevron-right" style={styles.body_iconMain} />
             </TouchableOpacity>
