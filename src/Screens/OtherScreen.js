@@ -113,7 +113,7 @@ export default function OtherScreen() {
             <TouchableOpacity style={styles.body_itemMain}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Material name="star-outline" style={styles.body_iconMain} />
-                <Text style={styles.body_textMain}>Đánh giá đơn hàng</Text>
+                <Text style={styles.body_textMain}>Đánh giá</Text>
               </View>
               <Material name="chevron-right" style={styles.body_iconMain} />
             </TouchableOpacity>
